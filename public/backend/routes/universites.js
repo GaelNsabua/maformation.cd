@@ -1,10 +1,9 @@
-// routes/universites.js
 const express = require('express');
 const router = express.Router();
 const Universite = require('../models/universite');
 
 
-
+//Route pour rechercher des universités par mot clé
 router.get('/search', async (req, res) => {
     try {
       const query = req.query.q;
@@ -51,7 +50,7 @@ router.get('/search', async (req, res) => {
 // Créer une ou plusieurs universités
 router.post('/', async (req, res) => {
     try {
-        const universites = req.body; // Suppose que le corps de la requête est un tableau d'universités
+        const universites = req.body; // Le corps de la requête doit être un tableau d'universités
         if (!Array.isArray(universites)) {
             return res.status(400).send({ error: 'Le corps de la requête doit être un tableau d\'universités' });
         }

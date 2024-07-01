@@ -9,7 +9,7 @@
     <?php require_once 'components/general-comps/navbar.php'; ?>
     <?php require_once 'components/index-comps/banner-1.php'; ?>
     <?php require_once 'components/index-comps/stat-section.php'; ?>
-    <main class="container mx-auto p-20">
+    <main class="container mx-auto md:p-16 p-5">
     <?php require_once 'components/general-comps/search-section.php'; ?>
     <?php require_once 'components/index-comps/popular-section.php'; ?>
     <?php require_once 'components/index-comps/banner-2.php'; ?>

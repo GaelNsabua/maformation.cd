@@ -11,7 +11,7 @@
 
     <main class="container mx-auto md:px-20 px-3 md:py-8 py-2">
         <?php require_once '../components/general-comps/search-section.php'; ?>
-        <div id="searchResults" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 my-6"></div>
+        <div id="searchResults" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 my-6" data-aos="fade-up" data-aos-delay="200"></div>
     </main>
 
     <?php require_once '../components/general-comps/footer.php'; ?>
@@ -19,15 +19,12 @@
     <script>
 
         document.addEventListener('DOMContentLoaded', async () => {
-            const query = ''
-            const budget = ''
-
-            await searchUniversities(query, budget);
+            await searchUniversities();
         });
        
-        async function searchUniversities(query, budget) {
+        async function searchUniversities() {
             try {
-                const response = await fetch(`http://localhost:5000/search?q=${encodeURIComponent(query)}&budget=${encodeURIComponent(budget)}`);
+                const response = await fetch(`http://localhost:5000/universites/`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok ' + response.statusText);
                 }

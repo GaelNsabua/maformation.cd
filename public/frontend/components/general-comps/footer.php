@@ -1,4 +1,4 @@
-<footer class="bg-gradient-to-r from-blue-600 to-blue-900 text-white py-10" data-aos = "fade-up">
+<footer class="bg-gradient-to-r from-blue-600 to-blue-900 text-white py-10" data-aos="fade-up" data-aos-delay="200">
         <div class="container mx-auto px-4">
             <div class="flex flex-wrap justify-between">
                 <!-- Contact Section -->
@@ -6,12 +6,12 @@
                     <h2 class="text-xl font-bold mb-4">CONTACTEZ-NOUS</h2>
                     <div class="mb-4">
                         <p class="flex items-center"><span class="material-icons mr-2">email</span>EMAIL</p>
-                        <p class="ml-6">isamm.educ.2020@gmail.com</p>
-                        <p class="ml-6">isamm.educ@isammarieauxiliatrice.org</p>
+                        <p class="ml-6">maformation.2024@gmail.com</p>
+                        <p class="ml-6">info.educ@MaFormation.org</p>
                     </div>
                     <div class="mb-4">
                         <p class="flex items-center"><span class="material-icons mr-2">location_on</span>ADRESSE</p>
-                        <p class="ml-6">02, Avenue Marie Auxiliatrice, Golf Plateau<br>Karavia, Lubumbashi – RDC</p>
+                        <p class="ml-6">02, Avenue des antennes, Golf Plateau<br>Karavia, Lubumbashi – RDC</p>
                     </div>
                     <div>
                         <p class="flex items-center"><span class="material-icons mr-2">phone</span>TÉLÉPHONE</p>
@@ -33,7 +33,7 @@
                     </div>
                 </div>
             </div>
-            <div class="text-center px-3">
+            <div class="text-center p-4 border-t">
                     <p>&copy; 2024 MaFormation.cd. Tous droits réservés.</p>
              </div>
         </div>

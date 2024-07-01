@@ -8,15 +8,16 @@
                 <span class="font-bold text-lg">MaFormation.cd</span>
             </div>
             <div class="hidden md:flex space-x-8 mx-auto font-bold text-lg">
-                <a href="#" class="text-gray-100 transform duration-150 hover:-translate-y-1">Bienvenue</a>
+                <a href="http://localhost/maformation.cd/public/frontend/" class="text-gray-100 transform duration-150 hover:-translate-y-1">Bienvenue</a>
                 <div class="relative group">
                     <button class="text-gray-100 transform duration-150 hover:-translate-y-1 focus:outline-none">Universités</button>
-                    <div class="absolute hidden group-hover:block bg-white shadow-lg rounded mt-1 px-2 text-nowrap">
-                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Formation 1</a>
-                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Formation 2</a>
+                    <div class="absolute hidden group-hover:block bg-blue-400 text-white shadow-lg rounded mt-1 p-2 text-nowrap">
+                        <a href="http://localhost/maformation.cd/public/frontend/pages/univ-list.php" class="block px-4 py-2 hover:bg-blue-600">Université</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-blue-600">Institut</a>
+                        <a href="#" class="block px-4 py-2  hover:bg-blue-600">Ecole superieur</a>
                     </div>
                 </div>
-                <a href="#" class="text-gray-100 transform duration-150 hover:-translate-y-1">A propos</a>
+                <a href="http://localhost/maformation.cd/public/frontend/pages/about.php" class="text-gray-100 transform duration-150 hover:-translate-y-1">A propos</a>
                 <div class="relative group">
                     <button class="text-gray-100 transform duration-150 hover:-translate-y-1 focus:outline-none">Autres</button>
                     <div class="absolute hidden group-hover:block bg-white shadow-lg rounded mt-1 px-2 text-nowrap">
@@ -40,7 +41,7 @@
         <div id="mobile-menu" class="md:hidden hidden">
             <a href="#" class="block px-4 py-2 text-white hover:bg-gray-300">Bienvenue</a>
             <a href="#" class="block px-4 py-2 text-white hover:bg-gray-300">Universités</a>
-            <a href="#" class="block px-4 py-2 text-white hover:bg-gray-300">A propos</a>
+            <a href="http://localhost/maformation.cd/public/frontend/pages/about.php" class="block px-4 py-2 text-white hover:bg-gray-300">A propos</a>
             <a href="#" class="block px-4 py-2 text-white hover:bg-gray-300">Autres</a>
             <a href="#" class="block px-4 py-2 text-white hover:bg-gray-300">Contact</a>
             <a href="#" class="block px-4 py-2 text-white bg-red-500 hover:bg-red-600">S'INSCRIRE</a>

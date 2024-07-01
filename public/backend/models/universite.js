@@ -1,6 +1,6 @@
-// models/Universite.js
 const mongoose = require('mongoose');
 
+//Schéma pour les personnalités importantes liées à chaque université
 const PersonnaliteSchema = new mongoose.Schema({
     identite: { type: String, required: true },
     photo: { type: String, required: true },
@@ -8,11 +8,13 @@ const PersonnaliteSchema = new mongoose.Schema({
     description: { type: String, required: true }
 });
 
+//Schéma pour les facultés liées à chaque université
 const faculteSchema = new mongoose.Schema({
     nom: { type: String, required: true },
     options: { type: [String], required: true }
 });
 
+//Schéma pour les universités
 const UniversiteSchema = new mongoose.Schema({
     sigle: { type: String, required: true },
     denomination: { type: String, required: true },
@@ -33,7 +35,8 @@ const UniversiteSchema = new mongoose.Schema({
         adresse: { type: String, required: true },
         lien : { type: String, required: true}
     },
-    personnalitesImportantes: [PersonnaliteSchema]
+    personnalitesImportantes: [PersonnaliteSchema],
+    dateAjout: {type: Date, default: Date.now}
 });
 
 // Index pour les recherches textuelles

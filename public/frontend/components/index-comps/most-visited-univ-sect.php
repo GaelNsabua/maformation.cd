@@ -3,7 +3,7 @@
             <h2 class="text-xl font-bold mb-4">Universités les Plus Visitées</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div class="p-4 bg-white rounded shadow hover:bg-gray-200 cursor-pointer">
-                    <img src="images/bg-2.jpeg" alt="Image 1" class="carousel-image w-full object-cover">
+                    <img src="images/student-2.jpg" alt="Image 1" class="carousel-image w-full object-cover">
                     <div class="p-4">
                         <h3 class="text-lg font-semibold">Université de Kinshasa</h3>
                         <p>Localisation : Kinshasa</p>

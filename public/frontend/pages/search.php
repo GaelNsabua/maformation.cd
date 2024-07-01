@@ -25,7 +25,7 @@
             const query = urlParams.get('mot_cle');
             const budget = urlParams.get('budget');
 
-            if (query) {
+            if (query || budget) {
                 await searchUniversities(query, budget);
             }else{
                 const searchMessage = document.getElementById('search-message');
@@ -37,9 +37,13 @@
        
         async function searchUniversities(query, budget) {
             try {
-                const response = await fetch(`http://localhost:5000/search?q=${encodeURIComponent(query)}&budget=${encodeURIComponent(budget)}`);
+                const response = await fetch(`http://localhost:5000/universites/search?q=${encodeURIComponent(query)}&budget=${encodeURIComponent(budget)}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok ' + response.statusText);
+                    const searchMessage = document.getElementById('search-message');
+                searchMessage.classList.remove('scale-0','bg-green-400');
+                searchMessage.classList.add('bg-red-500');
+                searchMessage.textContent = "Aucun résultat correspondant à votre recherche";
                 }
                 const data = await response.json();
                 searchMessage();
@@ -80,8 +84,7 @@
                         <h2 class="font-bold text-green-400">${universite.territoire}</h2>
                         <p class="py-4 text-gray-500">${universite.description[0].substr(0,200)}...</p>
                         <p><strong>Frais:</strong> ${universite.prixFrais.min} - ${universite.prixFrais.max} USD</p>
-                        <button href="http://localhost/maformation.cd/public/frontend/pages/univ-details.php?id=${universite._id}" class="bg-blue-500 text-white p-2 mt-2 rounded-sm shadow-md font-bold hover:bg-blue-700">En savoir plus</button>
-                    </div>
+                        <a href="http://localhost/maformation.cd/public/frontend/pages/univ-details.php?id=${universite._id}"><button class="bg-blue-500 text-white p-2 mt-2 rounded-sm shadow-md hover:bg-blue-700 font-bold" id="${universite.denomination}">En savoir plus</button></a>                    </div>
                 `;
                 resultsContainer.appendChild(universiteElement);
             });
