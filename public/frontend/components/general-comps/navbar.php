@@ -1,4 +1,4 @@
-<div class="text-center px-3 bg-blue-400 hidden">
+<div class="text-center px-4 bg-blue-400 hidden">
     <p>&copy; 2024 MaFormation.cd. Tous droits réservés.</p>
 </div>
 <nav class="bg-gradient-to-r from-blue-600 to-blue-900 text-white shadow-md fixed w-full z-50"  data-aos="fade-down" data-aos-delay="200">
@@ -7,7 +7,7 @@
                 <img src="http://localhost/maformation.cd/public/frontend/images/logo_news.png" alt="Logo" class="h-10 mr-4">
                 <span class="font-bold text-lg">MaFormation.cd</span>
             </div>
-            <div class="hidden md:flex space-x-8 mx-auto font-bold text-lg">
+            <div class="hidden md:flex space-x-8 mx-auto text-lg">
                 <a href="http://localhost/maformation.cd/public/frontend/" class="text-gray-100 transform duration-150 hover:-translate-y-1">Bienvenue</a>
                 <div class="relative group">
                     <button class="text-gray-100 transform duration-150 hover:-translate-y-1 focus:outline-none">Universités</button>

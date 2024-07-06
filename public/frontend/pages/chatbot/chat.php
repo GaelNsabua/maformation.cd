@@ -10,7 +10,7 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            width: 350px;
+            width: 400px;
             height: 500px;
             background: #fff;
             border-radius: 8px;
@@ -68,17 +68,7 @@
 <body class="bg-gray-100">
 
     <!-- Navbar -->
-    <nav class="bg-blue-600 text-white p-4">
-        <div class="container mx-auto flex justify-between">
-            <a href="#" class="font-bold">MaFormation.cd</a>
-            <div>
-                <a href="#" class="px-4">Home</a>
-                <a href="#" class="px-4">Universities</a>
-                <a href="#" class="px-4">About</a>
-                <a href="#" class="px-4">Contact</a>
-            </div>
-        </div>
-    </nav>
+    <?php require_once '../../components/general-comps/navbar.php'; ?>
 
     <!-- Banner -->
     <section class="bg-blue-700 text-white py-20">
@@ -130,6 +120,7 @@
     
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/compromise@latest/builds/compromise.min.js"></script>
+    <script src="./typed.js"></script>
     <script>
         function showFeedbackForm(facultyId) {
             document.getElementById('facultyId').value = facultyId;

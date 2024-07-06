@@ -39,11 +39,11 @@
             try {
                 const response = await fetch(`http://localhost:5000/universites/search?q=${encodeURIComponent(query)}&budget=${encodeURIComponent(budget)}`);
                 if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
                     const searchMessage = document.getElementById('search-message');
-                searchMessage.classList.remove('scale-0','bg-green-400');
-                searchMessage.classList.add('bg-red-500');
-                searchMessage.textContent = "Aucun résultat correspondant à votre recherche";
+                    searchMessage.classList.remove('scale-0','bg-green-400');
+                    searchMessage.classList.add('bg-red-500');
+                    searchMessage.textContent = "Aucun résultat correspondant à votre recherche";
+                    throw new Error('Network response was not ok ' + response.statusText);
                 }
                 const data = await response.json();
                 searchMessage();
