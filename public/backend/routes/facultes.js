@@ -27,4 +27,22 @@ router.get('/', async (req, res) => {
     }
 });
 
+// Route de recherche par mot clé
+router.get('/search', async (req, res) => {
+    try {
+        const { keyword } = req.query;
+        if (!keyword) {
+            return res.status(400).json({ error: 'Keyword is required' });
+        }
+
+        const faculties = await Faculty.find({
+            $text: { $search: keyword }
+        });
+
+        res.json(faculties);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 module.exports = router;

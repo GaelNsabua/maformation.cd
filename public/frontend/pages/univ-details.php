@@ -45,7 +45,7 @@
 
             detailsContainer.innerHTML = `
 
-            <h1 class="text-xl md:text-4xl font-bold mb-4 text-blue-500 text-center uppercase">${data.denomination}</h1>
+            <h1 class="text-xl md:text-4xl font-semibold mb-4 text-blue-500 text-center uppercase">${data.denomination}</h1>
                
                  <div class="border rounded shadow md:flex md:flex-row items-center justify-between container mx-auto my-4 p-4 bg-gray-200">
                             <div class="md:w-1/2">
@@ -53,8 +53,7 @@
                             </div>
 
                             <div class="md:w-1/2 px-4 md:p-6 space-y-1">
-                                <h1 class="text-xl md:text-3xl font-bold mb-4 text-blue-500 uppercase">${data.denomination}</h1>
-                                <h3 class="text-xl font-bold text-blue-500 uppercase">Informations</h3>
+                                <h1 class="text-xl md:text-3xl font-semibold mb-4 text-blue-500 uppercase">${data.denomination}</h1>
                                 <p><strong>Sigle : </strong> ${data.sigle}</p>
                                 <p><strong>Province : </strong> ${data.province}</p>
                                 <p><strong>Territoire : </strong> ${data.territoire}</p>
@@ -91,7 +90,7 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 my-6">
                      ${data.images.map(image => `
                         <div class="w-full">
-                            <img src="${image}" alt="${data.denomination}" class="w-full h-auto object-cover rounded">
+                            <img src="${image}" alt="${data.denomination}" class="w-80 h-80 object-cover transform duration-150 rounded hover:scale-105">
                         </div>
                     `).join('')}
                 </div>

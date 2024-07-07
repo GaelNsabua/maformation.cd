@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Faculty = require('../models/faculte');
 
-router.post('/feedback/:id', async (req, res) => {
+router.post('/:id', async (req, res) => {
     try {
         const { feedback } = req.body;
         const faculty = await Faculty.findById(req.params.id);
