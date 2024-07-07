@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('start-chat').addEventListener('click', () => {
         document.getElementById('chat-bot').classList.remove('hidden');
         document.getElementById('chat-bot').classList.add('flex');
-        addMessageToChat('bot', "Bonjour ! Je suis votre assistant virtuel. Je suis là pour vous aider à trouver la faculté qui correspond le mieux à vos intérêts, compétences et objectifs de carrière. Répondez simplement à quelques questions et je vous fournirai des recommandations personnalisées.");
-        setTimeout(askNextQuestion, 8000); // Attend 8 secondes avant de poser la première question
+        startConversation()
+        setTimeout(getNextQuestion, 6000); // Attend 8 secondes avant de poser la première question
     });
 
     document.getElementById('close-chat').addEventListener('click', () => {
@@ -19,33 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Questions et réponses variées
-    const responses = {
-        greeting: [
-            "Bonjour! Comment puis-je vous aider aujourd'hui?",
-            "Salut! Quels sont vos centres d'intérêt?",
-            "Bonjour! Parlez-moi de vos compétences principales."
-        ],
-        interestsQuestion: [
-            "Quels sont vos centres d'intérêt? (par exemple : sciences, arts, commerce)",
-            "Quels sujets vous passionnent le plus?",
-            "De quoi aimez-vous parler ou lire dans votre temps libre?"
-        ],
-        skillsQuestion: [
-            "Quelles sont vos compétences principales? (par exemple : mathématiques, dessin, gestion)",
-            "Dans quels domaines excellez-vous?",
-            "Quelles compétences trouvez-vous faciles à apprendre ou à pratiquer?"
-        ],
-        goalsQuestion: [
-            "Quels sont vos objectifs de carrière? (par exemple : ingénieur, artiste, gestionnaire)",
-            "Où vous voyez-vous dans 5 à 10 ans?",
-            "Quels sont vos rêves ou aspirations professionnelles?"
-        ],
-        previousOptionQuestion: [
-            "Quelle option avez-vous suivie à l'école secondaire? (par exemple : sciences, lettres, économie)",
-            "Quel était votre principal domaine d'études au lycée?",
-            "Quel programme avez-vous choisi pendant vos années scolaires?"
-        ]
-    };
+    const questions = [
+        "Quels sont vos centres d'intérêt ? (par exemple : sciences, arts, commerce)",
+        "Quelles sont vos compétences principales ? (par exemple : mathématiques, dessin, gestion)",
+        "Quels sont vos objectifs de carrière ? (par exemple : ingénieur, artiste, gestionnaire)",
+        "Quelle option avez-vous suivie à l'école secondaire ? (par exemple : sciences, lettres, économie)"
+    ];
 
     let currentQuestionIndex = 0;
     const answers = {
@@ -54,6 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
         goals: [],
         previousOption: []
     };
+
+    function startConversation() {
+        addMessageToChat('bot', 'Bonjour! Je suis votre assistant conseiller d\'orientation virtuel. Je suis là pour vous aider à trouver la faculté qui correspond le mieux à vos intérêts et compétences.');
+    }
 
     // Fonction pour ajouter des messages à la conversation
     function addMessageToChat(sender, message) {
@@ -83,38 +66,25 @@ document.addEventListener('DOMContentLoaded', () => {
         element.removeAttribute('id')
     }
 
-    // Fonction pour obtenir une réponse aléatoire
-    function getRandomResponse(responseArray) {
-        return responseArray[Math.floor(Math.random() * responseArray.length)];
-    }
+    // // Fonction pour obtenir une réponse aléatoire
+    // function getRandomResponse(responseArray) {
+    //     return responseArray[Math.floor(Math.random() * responseArray.length)];
+    // }
 
     // Fonction pour poser la prochaine question
-    function askNextQuestion() {
-        let question;
-        switch (currentQuestionIndex) {
-            case 0:
-                question = getRandomResponse(responses.interestsQuestion);
-                break;
-            case 1:
-                question = getRandomResponse(responses.skillsQuestion);
-                break;
-            case 2:
-                question = getRandomResponse(responses.goalsQuestion);
-                break;
-            case 3:
-                question = getRandomResponse(responses.previousOptionQuestion);
-                break;
-            default:
-                getRecommendations();
-                return;
+    const getNextQuestion = () => {
+        if (currentQuestionIndex < questions.length) {
+            addMessageToChat('bot', questions[currentQuestionIndex]);
+        } else {
+            getRecommendations();
         }
-
-        setTimeout(() => {
-            addMessageToChat('bot', question);
-        }, 1000);
+    };
+    //     setTimeout(() => {
+    //         addMessageToChat('bot', question);
+    //     }, 1000);
         
-        currentQuestionIndex++;
-    }
+    //     currentQuestionIndex++;
+    // }
 
     // Fonction pour envoyer le message de l'utilisateur
     async function sendMessage() {
@@ -127,24 +97,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Fonction pour traiter la réponse de l'utilisateur
-    function handleUserResponse(message) {
+    async function handleUserResponse(message) {
         const doc = nlp(message);
+    
+        // Extraire différents types de mots
+        const nouns = doc.nouns().out('array');
+        const adjectives = doc.adjectives().out('array');
+        const verbs = doc.verbs().out('array');
+    
+        // Combiner les résultats
+        const extractedWords = [...nouns, ...adjectives, ...verbs];
+        console.log(extractedWords)
+    
         switch (currentQuestionIndex) {
+            case 0:
+                answers.interests = extractedWords;
+                break;
             case 1:
-                answers.interests = doc.nouns().out('array');
+                answers.skills = extractedWords;
                 break;
             case 2:
-                answers.skills = doc.nouns().out('array');
+                answers.goals = extractedWords;
                 break;
             case 3:
-                answers.goals = doc.nouns().out('array');
-                break;
-            case 4:
-                answers.previousOption = doc.nouns().out('array');
+                answers.previousOption = extractedWords;
                 break;
         }
-        askNextQuestion();
+    
+        if (extractedWords.length === 0) {
+            addMessageToChat('bot', 'Je n\'ai pas bien compris. Pouvez-vous reformuler s\'il vous plaît?');
+        } else {
+            currentQuestionIndex++;
+            getNextQuestion();
+        }
     }
+    
 
     // Fonction pour obtenir des recommandations
     async function getRecommendations() {

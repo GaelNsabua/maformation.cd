@@ -12,6 +12,7 @@
     <main class="container mx-auto md:px-20 px-3 md:py-8 py-2">
         <?php require_once '../components/general-comps/search-section.php'; ?>
         <div class="bg-green-400 text-white text-center p-4 rounded-md mx-auto shadow-lg my-3 max-w-xl transform scale-0 duration-200" id="search-message"><h1 class="font-bold">Voici les resultats qui repondent aux critères de votre recherche</h1></div>
+        <div id="search-results" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
         <div id="searchResults" class="grid grid-cols-1 gap-4 my-6"></div>
     </main>
 
@@ -51,13 +52,40 @@
             } catch (error) {
                 console.error('Error:', error);
             }
+
+            //Recherche dans la collection faculté
+            try {
+                const response = await fetch(`http://localhost:5000/faculties/search?keyword=${encodeURIComponent(query)}`);
+                const faculties =await response.json();
+
+                const resultsContainer = document.getElementById('search-results');
+                resultsContainer.innerHTML = '';
+
+                //Affichage des universités
+                faculties.forEach(faculty => {
+                    const facultyDiv = document.createElement('div');
+                    facultyDiv.className = 'bg-white p-4 border-b-4 border-t-4 border-blue-600 shadow-md rounded-lg';
+                    facultyDiv.innerHTML = `
+                        <h3 class="text-xl font-semibold">${faculty.name}</h3>
+                        <p class="border-b py-3">${faculty.description}</p>
+                         <h3 class="text-xl font-semibold py-3">Options disponibles</h3>
+                         <ul class="list-disc ml-5 text-gray-700">
+                                ${faculty.options.map(option => `<li>${option.name}</li>`).join('')}
+                        </ul>
+                    `;
+                    resultsContainer.appendChild(facultyDiv);
+                });
+            } catch (error) {
+                console.error('Error searching faculties:', error);
+            }
         }
 
         function searchMessage(){
-            const searchMessage = document.getElementById('search-message').classList.remove('scale-0');
-            setTimeout(function(){
-                document.getElementById('search-message').classList.add('scale-100');
-            }, 5000);
+            const searchMessage = document.getElementById('search-message')
+            searchMessage.classList.remove('scale-0');
+            setTimeout(() => {
+                searchMessage.remove();
+            }, 6000);
         }
 
 
@@ -80,11 +108,12 @@
                         <img src="${universite.images[2]}" alt="${universite.denomination}" class="w-full h-auto object-cover mb-2">
                     </div>
                     <div class="md:w-1/2 p-6">
-                        <h2 class="text-xl font-bold text-blue-600 uppercase">${universite.denomination}</h2>
-                        <h2 class="font-bold text-green-400">${universite.territoire}</h2>
+                        <h2 class="text-xl font-semibold text-blue-800 uppercase">${universite.denomination}</h2>
+                        <h2 class="text-green-700">${universite.territoire}</h2>
                         <p class="py-4 text-gray-500">${universite.description[0].substr(0,200)}...</p>
                         <p><strong>Frais:</strong> ${universite.prixFrais.min} - ${universite.prixFrais.max} USD</p>
-                        <a href="http://localhost/maformation.cd/public/frontend/pages/univ-details.php?id=${universite._id}"><button class="bg-blue-500 text-white p-2 mt-2 rounded-sm shadow-md hover:bg-blue-700 font-bold" id="${universite.denomination}">En savoir plus</button></a>                    </div>
+                        <a href="http://localhost/maformation.cd/public/frontend/pages/univ-details.php?id=${universite._id}"><button class="bg-blue-500 text-white p-2 mt-2 rounded-lg shadow-md hover:bg-blue-700" id="${universite.denomination}">En savoir plus</button></a>
+                    </div>
                 `;
                 resultsContainer.appendChild(universiteElement);
             });

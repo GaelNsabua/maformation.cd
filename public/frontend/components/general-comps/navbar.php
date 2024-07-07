@@ -5,7 +5,7 @@
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center">
                 <img src="http://localhost/maformation.cd/public/frontend/images/logo_news.png" alt="Logo" class="h-10 mr-4">
-                <span class="font-bold text-lg">MaFormation.cd</span>
+                <span class="font-semibold text-lg">MaFormation.cd</span>
             </div>
             <div class="hidden md:flex space-x-8 mx-auto text-lg">
                 <a href="http://localhost/maformation.cd/public/frontend/" class="text-gray-100 transform duration-150 hover:-translate-y-1">Bienvenue</a>
@@ -28,7 +28,7 @@
                 <a href="#" class="text-gray-100 transform duration-150 hover:-translate-y-1">Contact</a>
             </div>
             <div class="hidden md:block transform duration-150 hover:-translate-x-2">
-                <a href="#" class="bg-blue-400 text-white font-bold shadow-md px-4 py-2 rounded hover:bg-blue-600">S'INSCRIRE</a>
+                <a href="#" class="bg-blue-400 text-white font-semibold shadow-md px-4 py-2 rounded hover:bg-blue-600">S'INSCRIRE</a>
             </div>
             <div class="md:hidden flex items-center">
                 <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">

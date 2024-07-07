@@ -2,28 +2,41 @@ const mongoose = require('mongoose');
 
 // Schéma pour les options
 const optionSchema = new mongoose.Schema({
-    name: String,
-    description: String
+    name: { type: String, index: true },
+    description: { type: String, index: true }
 });
 
 // Schéma pour les feedbacks
 const feedbackSchema = new mongoose.Schema({
-    feedback: String,
-    date: { type: Date, default: Date.now }
+    feedback: { type: String, index: true },
+    date: { type: Date, default: Date.now}
 });
 
 // Schéma pour les facultés
 const facultySchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    description: { type: String, required: true },
+    name: { type: String, required: true, index: true },
+    description: { type: String, required: true, index: true },
     options: [optionSchema],
     requirements: {
-        interests: [String],
-        skills: [String],
-        goals: [String],
-        previousOption: [String]
+        interests: { type: [String], index: true },
+        skills: { type: [String], index: true },
+        goals: { type: [String], index: true },
+        previousOption: { type: [String], index: true }
     },
-    feedbacks: [feedbackSchema] 
+    feedbacks: [feedbackSchema]
+});
+
+// index texte pour les champs de recherche
+facultySchema.index({
+    name: 'text',
+    description: 'text',
+    'options.name': 'text',
+    'options.description': 'text',
+    'feedbacks.feedback': 'text',
+    'requirements.interests': 'text',
+    'requirements.skills': 'text',
+    'requirements.goals': 'text',
+    'requirements.previousOption': 'text'
 });
 
 const faculte = mongoose.model('facultes', facultySchema);

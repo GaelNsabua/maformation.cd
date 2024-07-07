@@ -10,8 +10,8 @@ const PersonnaliteSchema = new mongoose.Schema({
 
 //Schéma pour les facultés liées à chaque université
 const faculteSchema = new mongoose.Schema({
-    nom: { type: String, required: true },
-    options: { type: [String], required: true }
+    nom: { type: String, required: true,  index: true },
+    options: { type: [String], required: true,  index: true }
 });
 
 //Schéma pour les universités
@@ -21,7 +21,7 @@ const UniversiteSchema = new mongoose.Schema({
     statut: { type: String, required: true },
     territoire: { type: String, required: true },
     province: { type: String, required: true },
-    description: { type: [String], required: true },
+    description: { type: [String], required: true},
     facultes: [faculteSchema],
     images: { type: [String], required: true },
     logementDisponible: { type: Boolean, required: true },

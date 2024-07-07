@@ -9,7 +9,7 @@
     <?php require_once '../components/general-comps/navbar.php'; ?>
     <?php require_once '../components/univ-comps/banner.php'; ?>
 
-    <main class="container mx-auto md:px-20 px-3 md:py-8 py-2">
+    <main class="container mx-auto md:px-10 px-3 md:py-8 py-2">
         <?php require_once '../components/general-comps/search-section.php'; ?>
         <div id="searchResults" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 my-6" data-aos="fade-up" data-aos-delay="200"></div>
     </main>
@@ -55,15 +55,15 @@
                         <img src="${universite.images[3]}" alt="${universite.denomination}" class="w-full h-auto object-cover mb-2">
                     </div>
                     <div class="p-2">
-                        <h2 class="text-xl font-bold text-blue-600 uppercase">${universite.denomination}</h2>
-                        <h2 class="font-bold text-green-400">${universite.territoire}</h2>
+                        <h2 class="text-xl font-semibold text-blue-600 uppercase">${universite.denomination}</h2>
+                        <h2 class="font-bold text-gray-700">${universite.territoire}</h2>
                         <ul class="my-2 list-none">
-                            <li><b class="text-blue-600">Statut : </b><span class="text-green-400">${universite.statut}</span></li>
-                            <li><b class="text-blue-600">Province : </b><span class="text-green-400">${universite.province}</span></li>
+                            <li><b>Statut : </b><span class="text-gray-700">${universite.statut}</span></li>
+                            <li><b>Province : </b><span class="text-gray-700">${universite.province}</span></li>
                         </ul>
                         <p class="py-4 text-gray-500">${universite.description[0].substr(0,200)}...</p>
                         <p><strong>Frais:</strong> ${universite.prixFrais.min} - ${universite.prixFrais.max} USD</p>
-                        <a href="http://localhost/maformation.cd/public/frontend/pages/univ-details.php?id=${universite._id}"><button class="bg-blue-500 text-white p-2 mt-2 rounded-sm shadow-md hover:bg-blue-700 font-bold" id="${universite.denomination}">En savoir plus</button></a>
+                        <a href="http://localhost/maformation.cd/public/frontend/pages/univ-details.php?id=${universite._id}"><button class="bg-blue-500 text-white p-2 mt-2 rounded-lg shadow-lg hover:bg-blue-700" id="${universite.denomination}">En savoir plus</button></a>
                     </div>
                 `;
                 resultsContainer.appendChild(universiteElement);
