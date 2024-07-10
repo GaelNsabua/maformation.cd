@@ -1,6 +1,6 @@
 <!-- Section des Statistiques -->
 <section class="container mx-auto my-8 px-8" data-aos="fade-down" data-aos-delay="800">
-        <h2 class="text-xl font-bold mb-4 text-center">Statistiques</h2>
+        <h2 class="text-xl font-medium mb-4 text-center">Statistiques</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
             <div class="p-4 bg-white rounded shadow border-l-8 border-blue-400">
                 <h3 class="text-3xl font-semibold text-blue-600" id="count1">0</h3>

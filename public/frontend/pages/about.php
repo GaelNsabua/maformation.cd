@@ -17,15 +17,15 @@
                     <div class="md:w-1/2">
                         <img src="../images/student-2.jpg" alt="student" class="w-full h-auto object-cover mb-2 rounded">
                     </div>
-                    <div class="md:w-1/2 px-4 md:p-6 space-y-1">
-                        <h3 class="text-xl font-bold text-blue-500 uppercase">Problématique</h3>
+                    <div class="md:w-1/2 px-4 md:p-6 space-y-2">
+                        <h3 class="text-5xl text-blue-500 uppercase">Problématique</h3>
                         <p>L'accès à l'information et à l'orientation universitaire et professionnelle est un défi majeur pour les étudiants congolais, en particulier dans la province du Haut-Katanga. Le manque de ressources fiables et centralisées rend difficile la recherche d'options de formation adaptées aux besoins et aspirations des étudiants.</p>
                     </div>
               </div>
 
               <div class="border rounded shadow md:flex md:flex-row items-center justify-between container mx-auto p-2 my-4 bg-gray-200" data-aos="fade-up" data-aos-delay="300">
-                    <div class="md:w-1/2 px-4 md:p-6 space-y-1">
-                        <h3 class="text-xl font-bold text-blue-500 uppercase">Solution</h3>
+                    <div class="md:w-1/2 px-4 md:p-6 space-y-2">
+                        <h3 class="text-5xl text-blue-500 uppercase">Solution</h3>
                         <p>Maformation.cd est une plateforme web innovante qui révolutionne l'orientation scolaire et professionnelle en RDC.</p>
                     </div>
                     <div class="md:w-1/2">
@@ -34,7 +34,7 @@
               </div>
 
               <div class="bg-gray-200 p-10 rounded-lg shadow-md mt-8" data-aos="fade-up" data-aos-delay="400">
-                    <h2 class="text-2xl font-bold text-green-500 mb-4 uppercase">Apports</h2>
+                    <h2 class="text-2xl text-green-500 mb-4 uppercase">Apports</h2>
                     <ul class="flex flex-row items-center justify-center flex-wrap">
                         <li class="m-3 p-4 bg-white border-b-4 border-blue-600 shadow-md rounded-lg">
                             <div class="flex items-center">
@@ -72,7 +72,7 @@
                 </div>
 
                 <div class="bg-gray-200 p-10 rounded-lg shadow-md mt-8" data-aos="fade-up" data-aos-delay="500">
-                    <h2 class="text-2xl font-bold text-green-500 mb-4 uppercase">Avantages</h2>
+                    <h2 class="text-2xl text-green-500 mb-4 uppercase">Avantages</h2>
                     <ul class="flex flex-row items-center justify-center flex-wrap">
                         <li class="m-3 p-4 bg-white border-b-4 border-blue-600 shadow-md rounded-lg">
                             <div class="flex items-center">
@@ -119,7 +119,7 @@
                     </div>
               </div>
 
-              <div class="bg-blue-400 text-white text-3xl text-center p-4 rounded-md mx-auto shadow-lg my-3 max-w-5xl transform scale duration-200" id="search-message" data-aos="fade-down" data-aos-delay="600"><h1 class="font-bold">Rejoignez la révolution de l'orientation universitaire et professionnelle en RDC avec Maformation.cd!</h1></div>
+              <div class="bg-blue-400 text-white text-3xl text-center p-4 rounded-md mx-auto shadow-lg my-3 max-w-5xl transform scale duration-200" id="search-message" data-aos="fade-down" data-aos-delay="600"><h1>Rejoignez la révolution de l'orientation universitaire et professionnelle en RDC avec Maformation.cd!</h1></div>
 
     </main>
 

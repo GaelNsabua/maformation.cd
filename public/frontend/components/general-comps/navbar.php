@@ -28,7 +28,7 @@
                 <a href="#" class="text-gray-100 transform duration-150 hover:-translate-y-1">Contact</a>
             </div>
             <div class="hidden md:block transform duration-150 hover:-translate-x-2">
-                <a href="#" class="bg-blue-400 text-white font-semibold shadow-md px-4 py-2 rounded hover:bg-blue-600">S'INSCRIRE</a>
+                <a href="http://localhost/maformation.cd/public/frontend/pages/login.php" class="bg-blue-400 text-white font-semibold shadow-md px-4 py-2 rounded hover:bg-blue-600">S'INSCRIRE</a>
             </div>
             <div class="md:hidden flex items-center">
                 <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
@@ -44,6 +44,6 @@
             <a href="http://localhost/maformation.cd/public/frontend/pages/about.php" class="block px-4 py-2 text-white hover:bg-gray-300">A propos</a>
             <a href="#" class="block px-4 py-2 text-white hover:bg-gray-300">Autres</a>
             <a href="#" class="block px-4 py-2 text-white hover:bg-gray-300">Contact</a>
-            <a href="#" class="block px-4 py-2 text-white bg-red-500 hover:bg-red-600">S'INSCRIRE</a>
+            <a href="http://localhost/maformation.cd/public/frontend/pages/login.php" class="block px-4 py-2 text-white bg-red-500 hover:bg-red-600">S'INSCRIRE</a>
         </div>
     </nav>

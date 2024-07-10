@@ -11,6 +11,9 @@
     <!-- Navbar -->
     <?php require_once '../../components/general-comps/navbar.php'; ?>
 
+    <!-- Notification container -->
+    <div id="notification-container" class="fixed top-4 right-4 z-50 space-y-4"></div>
+
     <!-- Banner -->
     <section class="bg-cover bg-center text-white py-20" style="background-image: url('../../images/building-1.jpg');">
         <div class="container mx-auto text-center h-80 my-auto flex flex-col justify-center items-center bg-black bg-opacity-60">
@@ -21,7 +24,7 @@
     </section>
 
     <!-- Chat Bot Container -->
-    <div id="chat-bot" class="fixed bottom-5 right-5 w-96 h-3/4 bg-white rounded-lg shadow-xl hidden flex-col z-50">
+    <div id="chat-bot" class="fixed bottom-5 md:right-5 md:w-96 h-5/6 bg-white rounded-lg shadow-xl hidden flex-col z-50">
         <div class="chat-header flex items-center justify-between p-4 bg-blue-600 text-white rounded-t-lg">
             <div class="h-7 flex flex-row items-center space-x-2">
             <img src="./image/chat.png" alt="student" class="w-7 object-cover">
@@ -41,18 +44,17 @@
     </div>
 
     <!-- Results Section -->
-    <section class="container mx-auto py-10 px-14" id="results-section" style="display: none;">
+    <section class="container mx-auto py-10 px-4 md:px-14" id="results-section" style="display: none;">
         <h2 class="text-2xl font-bold mb-6">Recommended Universities</h2>
         <div id="results" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </section>
 
     <!-- Feedback Section -->
-    <div class="container mx-8 mt-8 p-4 w-2/4">
-        <h2 class="text-2xl font-semibold mb-4">Laissez votre Feedback</h2>
+    <div class="container md:mx-8 mt-8 p-4 w-full md:w-2/4">
+        <h2 class="text-2xl font-semibold mb-4">Laissez votre feedback</h2>
         <form id="feedbackForm" class="bg-white p-4 rounded shadow-md">
             <label for="facultyId" class="block text-gray-700 font-bold mb-2">Faculté :</label>
             <input type="text" id="facultyId" name="facultyId" class="w-full p-2 border border-gray-300 rounded mb-4">
-
             <label for="feedback" class="block text-gray-700 font-bold mb-2">Votre Feedback :</label>
             <textarea id="feedback" name="feedback" class="w-full p-2 border border-gray-300 rounded mb-4"></textarea>
 
@@ -64,8 +66,7 @@
 
     <script src="../../app.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://unpkg.com/compromise"></script>
-    <script src="./typed.js"></script>
+    <script src="./js/typed.js"></script>
     <script>
         function showFeedbackForm(facultyId) {
             document.getElementById('facultyId').value = facultyId;
@@ -85,6 +86,6 @@
         });
     </script>
 
-    <script type="module" src="chatbot.js"></script>
+    <script type="module" src="./js/chatbot.js"></script>
 </body>
 </html>
