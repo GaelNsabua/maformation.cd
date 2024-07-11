@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const Faculty = require('../models/faculte');
+const auth = require('../middleware/auth');
 
-router.post('/:id', async (req, res) => {
+router.post('/:id', auth, async (req, res) => {
     try {
         const { feedback } = req.body;
         const faculty = await Faculty.findById(req.params.id);

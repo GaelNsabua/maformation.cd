@@ -1,4 +1,4 @@
-<footer class="bg-gradient-to-r from-blue-600 to-blue-900 text-white py-10" data-aos="fade-up" data-aos-delay="200">
+<footer class="bg-gradient-to-r from-blue-600 to-blue-900 text-white py-10 mt-4" data-aos="fade-up" data-aos-delay="200">
         <div class="container mx-auto px-4">
             <div class="flex flex-wrap justify-between">
                 <!-- Contact Section -->

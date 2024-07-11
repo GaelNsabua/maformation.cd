@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-// const Universite = require('../models/universite');
+const auth = require('../middleware/auth');
 const Faculty = require('../models/faculte');
 
 // Route pour ajouter une nouvelle faculté
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
     try {
         const faculty = req.body
         if (!Array.isArray(faculty)) {
@@ -18,7 +18,7 @@ router.post('/', async (req, res) => {
 });
 
 // Route pour obtenir toutes les facultés
-router.get('/', async (req, res) => {
+router.get('/', auth, async (req, res) => {
     try {
         const faculties = await Faculty.find();
         res.status(200).send(faculties);
@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
 });
 
 // Route de recherche par mot clé
-router.get('/search', async (req, res) => {
+router.get('/search', auth, async (req, res) => {
     try {
         const { keyword } = req.query;
         if (!keyword) {

@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const Universite = require('../models/universite');
-
+const auth = require('../middleware/auth');
 
 //Route pour rechercher des universités par mot clé
-router.get('/search', async (req, res) => {
+router.get('/search', auth, async (req, res) => {
     try {
       const query = req.query.q;
       const budget = parseFloat(req.query.budget);
@@ -82,7 +82,7 @@ router.get('/university/:id', async (req, res) => {
 });
 
 // Mettre à jour une université par ID
-router.patch('/:id', async (req, res) => {
+router.patch('/:id', auth, async (req, res) => {
     try {
         const universite = await Universite.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
         if (!universite) return res.status(404).send();
@@ -93,7 +93,7 @@ router.patch('/:id', async (req, res) => {
 });
 
 // Supprimer une université par ID
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
     try {
         const universite = await Universite.findByIdAndDelete(req.params.id);
         if (!universite) return res.status(404).send();

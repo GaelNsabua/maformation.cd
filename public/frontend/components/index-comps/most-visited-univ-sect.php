@@ -1,6 +1,6 @@
 <!-- Most Visited Universities Section -->
 <section data-aos="fade-up">
-            <h2 class="text-xl font-bold mb-4">Universités les Plus Visitées</h2>
+            <h2 class="text-xl font-bold mb-4">Université populaire</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div class="p-4 bg-white rounded shadow hover:bg-gray-200 cursor-pointer">
                     <img src="images/student-2.jpg" alt="Image 1" class="carousel-image w-full object-cover">

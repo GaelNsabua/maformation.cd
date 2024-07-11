@@ -6,6 +6,7 @@
     <title>MaFormation.cd</title>
 </head>
 <body class="bg-gray-100">
+    <?php require_once './components/general-comps/chat-button.php'; ?>
     <?php require_once 'components/general-comps/navbar.php'; ?>
     <?php require_once 'components/index-comps/banner-1.php'; ?>
     <?php require_once 'components/index-comps/stat-section.php'; ?>

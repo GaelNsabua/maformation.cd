@@ -12,7 +12,7 @@
 <style>
     *{
         font-family: "Roboto", sans-serif;
-        font-weight: 300;
+        font-weight: 400;
         font-style: normal;
     }
 </style>
