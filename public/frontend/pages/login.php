@@ -9,7 +9,7 @@
 <body class="bg-gray-100">
     <?php require_once '../components/general-comps/navbar.php'; ?>
     <div class="flex items-center justify-center h-screen pt-32">
-        <div id="notification-container" class="fixed top-0 right-0 m-4"></div>
+        <div id="notification-container" class="fixed top-0 right-0 m-4 z-50"></div>
         <div class="w-full max-w-md py-14">
         <?php require_once '../components/log-comps/register.php'; ?>
         <?php require_once '../components/log-comps/login.php'; ?>

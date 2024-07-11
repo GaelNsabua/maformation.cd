@@ -8,15 +8,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     // Ouvrir et fermer le chatbot
     document.getElementById('start-chat').addEventListener('click', () => {
-        document.getElementById('chat-bot').classList.remove('hidden');
-        document.getElementById('chat-bot').classList.add('flex');
+        document.getElementById('chat-bot').classList.remove('hidden','translate-y-full');
+        document.getElementById('chat-bot').classList.add('flex','translate-y-0');
         startConversation()
         setTimeout(getNextQuestion, 6000); // Attend 8 secondes avant de poser la première question
     });
 
     document.getElementById('close-chat').addEventListener('click', () => {
-        document.getElementById('chat-bot').classList.remove('flex');
-        document.getElementById('chat-bot').classList.add('hidden');
+        document.getElementById('chat-bot').classList.remove('translate-y-0', 'flex');
+        document.getElementById('chat-bot').classList.add('translate-y-full', 'hidden');
     });
 
     // Envoyer le message de l'utilisateur

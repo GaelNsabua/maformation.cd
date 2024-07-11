@@ -9,12 +9,15 @@
 <body class="bg-gray-100">
     <?php require_once '../components/general-comps/navbar.php'; ?>
     <?php require_once '../components/univ-comps/banner.php'; ?>
+    <?php require_once '../components/general-comps/chat-button.php'; ?>
     <?php //echo "<h1>{$_GET['id']}</h1>" ?>
 
     <main class="mt-2 p-4 container mx-auto">
         <div id="universityDetails" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
         </div>
     </main>
+
+    <div id="notification-container" class="fixed top-0 right-0 m-4 z-50"></div>
 
     <?php require_once '../components/general-comps/footer.php'; ?>
 

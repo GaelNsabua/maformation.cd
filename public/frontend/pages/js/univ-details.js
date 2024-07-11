@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (id) {
         try {
-            const response = await fecth(`http://localhost:5000/universites/university/${id}`);
+            const response = await fetch(`http://localhost:5000/universites/university/${id}`);
             if (!response.ok) {
                 throw new Error('Network response was not ok ' + response.statusText);
             }
@@ -20,32 +20,34 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Vérifier la présence du token
             if (!token) {
-                window.location.href = '/login';
+                showNotification('You need to log in first.', 'error');
+                window.location.href = 'http://localhost/maformation.cd/public/frontend/';
                 return;
             }
 
             // Charger les avis existants
             async function fetchReviews() {
                 try {
-                    const response = await axios.get(`/api/universite/${universityId}/avis`);
-                    const reviews = response.data;
-            
+                    const response = await fetch(`http://localhost:5000/avis/universite/${universiteId}/avis`);
+                    const reviews = await response.json()
                     const reviewsContainer = document.getElementById('reviews');
-                    reviewsContainer.innerHTML = ''; // Clear any existing content
-            
-                    reviews.forEach(review => {
-                        const reviewElement = document.createElement('div');
-                        reviewElement.classList.add('bg-white', 'p-4', 'rounded', 'shadow-md');
-            
-                        reviewElement.innerHTML = `
-                            <p class="text-lg font-bold">${review.utilisateur}</p>
-                            <p class="text-sm text-gray-600">${review.email}</p>
-                            <p class="text-sm">${review.commentaire}</p>
-                            <p class="text-sm font-bold">Note: ${review.note}/5</p>
-                        `;
-            
-                        reviewsContainer.appendChild(reviewElement);
-                    });
+                    reviewsContainer.innerHTML = '';
+                    
+                    if (reviews && reviews.length > 0) {
+                        reviews.forEach(review => {
+                            const reviewElement = document.createElement('div');
+                            reviewElement.classList.add('bg-white', 'p-4', 'rounded', 'shadow-md', 'my-3');
+                
+                            reviewElement.innerHTML = `
+                                <p class="text-lg font-medium">${review.utilisateur}</p>
+                                <p class="text-sm text-gray-600">${review.email}</p>
+                                <p class="text-sm">${review.commentaire}</p>
+                                <p class="text-sm font-medium">Note: ${review.note}/5</p>
+                            `;
+                
+                            reviewsContainer.appendChild(reviewElement);
+                        });
+                    }
                 } catch (error) {
                     console.error('Erreur lors de la récupération des avis:', error);
                 }
@@ -53,7 +55,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             
 
             // Charger les avis au démarrage
-            loadAvis();
+            fetchReviews();
 
             // Soumettre un avis
             document.getElementById('reviewForm').addEventListener('submit', async (e) => {
@@ -82,15 +84,28 @@ document.addEventListener('DOMContentLoaded', async () => {
                     });
 
                     if (avisResponse.status === 201) {
+                        showNotification('Avis envoyé avec succès', 'success');
                         alert('Avis envoyé avec succès');
                         loadAvis();
                     }
                 } catch (error) {
                     console.error('Erreur lors de l\'envoi de l\'avis:', error);
-                    alert('Erreur lors de l\'envoi de l\'avis');
+                    showNotification('AErreur lors de l\'envoi de l\'avis', 'error');
                 }
             });
 });
+
+// Function to show notification
+function showNotification(message, type) {
+    const notificationContainer = document.getElementById('notification-container');
+    const notification = document.createElement('div');
+    notification.className = `p-4 mb-4 rounded-lg shadow-md ${type === 'error' ? 'bg-red-500 text-white' : 'bg-green-500 text-white'}`;
+    notification.textContent = message;
+    notificationContainer.appendChild(notification);
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
 
 function displayUniversityDetails(data) {
     const detailsContainer = document.getElementById('universityDetails');
@@ -167,25 +182,39 @@ function displayUniversityDetails(data) {
         </div>
         <a href="${data.contact.lien}"><button class="bg-blue-500 text-white p-2 mt-2 rounded-sm shadow-md hover:bg-blue-700">Visiter le site de l'université</button></a>
 
-        <section class="container mx-auto py-10">
-        <h2 class="text-2xl font-bold mb-6">Ajouter un Avis</h2>
-        <form id="reviewForm" class="bg-white p-6 rounded shadow-md">
-            <label for="note" class="block text-gray-700 font-bold mb-2">Note :</label>
-            <select id="note" name="note" class="w-full p-2 border border-gray-300 rounded mb-4">
-                <option value="1">1 - Très mauvais</option>
-                <option value="2">2 - Mauvais</option>
-                <option value="3">3 - Moyen</option>
-                <option value="4">4 - Bon</option>
-                <option value="5">5 - Excellent</option>
-            </select>
+    <section class="container mx-auto py-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Image with overlay text -->
+            <div class="relative h-96">
+                <img src="./chatbot/image/cartoon.png" alt="University Image" class="w-full h-full object-cover rounded shadow-md">
+                <div class="absolute inset-0 bg-blue-800 bg-opacity-50 flex items-center justify-center rounded">
+                    <h2 class="text-white text-3xl font-bold text-center">Partagez Votre Expérience</h2>
+                </div>
+            </div>
+            <!-- Review Form -->
+            <div class="bg-white p-6 rounded shadow-md h-96">
+                <h2 class="text-2xl font-bold mb-6">Ajouter un Avis</h2>
+                <form id="reviewForm">
+                    <label for="note" class="block text-gray-700 font-bold mb-2">Note :</label>
+                    <select id="note" name="note" class="w-full p-2 border border-gray-300 rounded mb-4">
+                        <option value="1">1 - Très mauvais</option>
+                        <option value="2">2 - Mauvais</option>
+                        <option value="3">3 - Moyen</option>
+                        <option value="4">4 - Bon</option>
+                        <option value="5">5 - Excellent</option>
+                    </select>
 
-            <label for="commentaire" class="block text-gray-700 font-bold mb-2">Commentaire :</label>
-            <textarea id="commentaire" name="commentaire" class="w-full p-2 border border-gray-300 rounded mb-4"></textarea>
+                    <label for="commentaire" class="block text-gray-700 font-bold mb-2">Commentaire :</label>
+                    <textarea id="commentaire" name="commentaire" class="w-full p-2 border border-gray-300 rounded mb-4" rows="4"></textarea>
 
-            <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded">Envoyer</button>
-        </form>
+                    <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Envoyer</button>
+                </form>
+            </div>
+        </div>
     </section>
 
+   
+    <!-- Section pour les commentaires -->
     <section class="container mx-auto py-10">
         <h2 class="text-2xl font-bold mb-6">Avis des utilisateurs</h2>
         <div id="reviews" class="bg-white p-6 rounded shadow-md"></div>

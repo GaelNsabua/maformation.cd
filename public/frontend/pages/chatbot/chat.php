@@ -24,7 +24,8 @@
     </section>
 
     <!-- Chat Bot Container -->
-    <div id="chat-bot" class="fixed bottom-5 md:right-5 md:w-96 h-5/6 bg-white rounded-lg shadow-xl hidden flex-col z-50">
+    <?php require_once '../../components/general-comps/chat-button.php'; ?>
+    <div id="chat-bot" class="fixed bottom-5 md:right-5 md:w-96 h-5/6 bg-white rounded-lg shadow-xl transform translate-y-full duration-300 hidden flex-col z-50">
         <div class="chat-header flex items-center justify-between p-4 bg-blue-600 text-white rounded-t-lg">
             <div class="h-7 flex flex-row items-center space-x-2">
             <img src="./image/chat.png" alt="student" class="w-7 object-cover">

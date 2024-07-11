@@ -8,6 +8,7 @@
 <body class="bg-gray-100">
     <?php require_once '../components/general-comps/navbar.php'; ?>
     <?php require_once '../components/univ-comps/banner.php'; ?>
+    <?php require_once '../components/general-comps/chat-button.php'; ?>
 
     <main class="container mx-auto md:px-10 px-3 md:py-8 py-2">
         <?php require_once '../components/general-comps/search-section.php'; ?>

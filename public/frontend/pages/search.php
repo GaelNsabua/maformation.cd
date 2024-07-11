@@ -22,7 +22,7 @@
 
     <?php require_once '../components/general-comps/footer.php'; ?>
 
-    <div id="notification-container" class="fixed top-0 right-0 m-4"></div>
+    <div id="notification-container" class="fixed top-0 right-0 m-4 z-50"></div>
 
     <script src="./js/search.js"></script>
     <script src="../app.js"></script>
