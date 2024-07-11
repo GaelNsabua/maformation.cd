@@ -24,12 +24,14 @@ const faculteRoutes = require('./routes/facultes');
 const recommendationRoutes = require('./routes/recommendation'); 
 const feedbackRoutes = require('./routes/feedback');
 const userRoutes = require('./routes/user');
+const avisRoutes = require('./routes/avis');
 
 app.use('/feedback', feedbackRoutes);
 app.use('/universites', universiteRoutes);
 app.use('/faculties', faculteRoutes);
 app.use('/recommendation', recommendationRoutes);
 app.use('/users', userRoutes);
+app.use('/avis', avisRoutes);
 
 // Global error handler
 app.use((err, req, res, next) => {

@@ -20,5 +20,6 @@
 
     <script src="./js/univ-details.js"></script>
     <script src="../app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
 </html>

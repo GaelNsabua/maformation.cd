@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (id) {
         try {
-            const response = await fetch(`http://localhost:5000/universites/university/${id}`);
+            const response = await fecth(`http://localhost:5000/universites/university/${id}`);
             if (!response.ok) {
                 throw new Error('Network response was not ok ' + response.statusText);
             }
@@ -14,6 +14,82 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.error('Error:', error);
         }
     }
+
+            const universiteId = id;
+            const token = localStorage.getItem('token');
+
+            // Vérifier la présence du token
+            if (!token) {
+                window.location.href = '/login';
+                return;
+            }
+
+            // Charger les avis existants
+            async function fetchReviews() {
+                try {
+                    const response = await axios.get(`/api/universite/${universityId}/avis`);
+                    const reviews = response.data;
+            
+                    const reviewsContainer = document.getElementById('reviews');
+                    reviewsContainer.innerHTML = ''; // Clear any existing content
+            
+                    reviews.forEach(review => {
+                        const reviewElement = document.createElement('div');
+                        reviewElement.classList.add('bg-white', 'p-4', 'rounded', 'shadow-md');
+            
+                        reviewElement.innerHTML = `
+                            <p class="text-lg font-bold">${review.utilisateur}</p>
+                            <p class="text-sm text-gray-600">${review.email}</p>
+                            <p class="text-sm">${review.commentaire}</p>
+                            <p class="text-sm font-bold">Note: ${review.note}/5</p>
+                        `;
+            
+                        reviewsContainer.appendChild(reviewElement);
+                    });
+                } catch (error) {
+                    console.error('Erreur lors de la récupération des avis:', error);
+                }
+            }
+            
+
+            // Charger les avis au démarrage
+            loadAvis();
+
+            // Soumettre un avis
+            document.getElementById('reviewForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const note = document.getElementById('note').value;
+                const commentaire = document.getElementById('commentaire').value;
+
+                try {
+                    const userResponse = await axios.get(`http://localhost:5000/users/profile`, {
+                        headers: {
+                            'x-auth-token': token
+                        }
+                    });
+                    const { email, name } = userResponse.data;
+
+                    const avisResponse = await axios.post(`http://localhost:5000/avis/universite/${universiteId}/avis`, {
+                        utilisateur: name,
+                        email,
+                        note,
+                        commentaire
+                    }, {
+                        headers: {
+                            'x-auth-token': token
+                        }
+                    });
+
+                    if (avisResponse.status === 201) {
+                        alert('Avis envoyé avec succès');
+                        loadAvis();
+                    }
+                } catch (error) {
+                    console.error('Erreur lors de l\'envoi de l\'avis:', error);
+                    alert('Erreur lors de l\'envoi de l\'avis');
+                }
+            });
 });
 
 function displayUniversityDetails(data) {
@@ -65,9 +141,9 @@ function displayUniversityDetails(data) {
         </div>
 
         <h2 class="text-2xl font-bold my-4 text-center text-green-400 uppercase">Galerie</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 my-6" data-aos = "fade-up">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 my-6 mx-auto" data-aos = "fade-up">
              ${data.images.map(image => `
-                <div class="w-full">
+                <div class="w-full mx-auto">
                     <img src="${image}" alt="${data.denomination}" class="w-80 h-80 object-cover transform duration-150 rounded hover:scale-105">
                 </div>
             `).join('')}
@@ -90,5 +166,29 @@ function displayUniversityDetails(data) {
             `).join('')}
         </div>
         <a href="${data.contact.lien}"><button class="bg-blue-500 text-white p-2 mt-2 rounded-sm shadow-md hover:bg-blue-700">Visiter le site de l'université</button></a>
+
+        <section class="container mx-auto py-10">
+        <h2 class="text-2xl font-bold mb-6">Ajouter un Avis</h2>
+        <form id="reviewForm" class="bg-white p-6 rounded shadow-md">
+            <label for="note" class="block text-gray-700 font-bold mb-2">Note :</label>
+            <select id="note" name="note" class="w-full p-2 border border-gray-300 rounded mb-4">
+                <option value="1">1 - Très mauvais</option>
+                <option value="2">2 - Mauvais</option>
+                <option value="3">3 - Moyen</option>
+                <option value="4">4 - Bon</option>
+                <option value="5">5 - Excellent</option>
+            </select>
+
+            <label for="commentaire" class="block text-gray-700 font-bold mb-2">Commentaire :</label>
+            <textarea id="commentaire" name="commentaire" class="w-full p-2 border border-gray-300 rounded mb-4"></textarea>
+
+            <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded">Envoyer</button>
+        </form>
+    </section>
+
+    <section class="container mx-auto py-10">
+        <h2 class="text-2xl font-bold mb-6">Avis des utilisateurs</h2>
+        <div id="reviews" class="bg-white p-6 rounded shadow-md"></div>
+    </section>
     `;
 }

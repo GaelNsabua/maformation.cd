@@ -17,7 +17,7 @@ const faculteSchema = new mongoose.Schema({
 // Schéma pour les avis
 const avisSchema = new mongoose.Schema({
     utilisateur: { type: String, required: true },
-    email: { type: String, required: true },
+    email: { type: String, required: true, unique: true},
     note: { type: Number, required: true, min: 1, max: 5 },
     commentaire: { type: String, required: true },
     date: { type: Date, default: Date.now }

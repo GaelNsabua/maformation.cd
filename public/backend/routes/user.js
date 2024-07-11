@@ -2,7 +2,8 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const { check, validationResult } = require('express-validator');
-const User = require('../models/user'); 
+const User = require('../models/user');
+const auth = require('../middleware/auth');
 
 const router = express.Router();
 const secretKey = process.env.JWT_SECRET; 
@@ -69,5 +70,21 @@ router.post('/login', [
         res.status(500).json({ message: 'Erreur serveur' });
     }
 });
+
+
+// Route pour obtenir le profil de l'utilisateur
+router.get('/profile', auth, async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id).select('email name'); // Récupère l'utilisateur par son ID depuis le token
+        if (!user) {
+            return res.status(404).json({ error: 'Utilisateur non trouvé' });
+        }
+        res.json(user);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erreur lors de la récupération du profil' });
+    }
+});
+
 
 module.exports = router;

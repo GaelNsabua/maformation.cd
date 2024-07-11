@@ -48,7 +48,7 @@ router.get('/search', auth, async (req, res) => {
 
 
 // Créer une ou plusieurs universités
-router.post('/', auth, async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const universites = req.body; // Le corps de la requête doit être un tableau d'universités
         if (!Array.isArray(universites)) {
