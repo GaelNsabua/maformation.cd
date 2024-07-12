@@ -85,12 +85,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                     if (avisResponse.status === 201) {
                         showNotification('Avis envoyé avec succès', 'success');
-                        alert('Avis envoyé avec succès');
-                        loadAvis();
+                        fetchReviews();;
                     }
                 } catch (error) {
                     console.error('Erreur lors de l\'envoi de l\'avis:', error);
-                    showNotification('AErreur lors de l\'envoi de l\'avis', 'error');
+                    showNotification('Erreur lors de l\'envoi de l\'avis', 'error');
                 }
             });
 });
@@ -109,10 +108,13 @@ function showNotification(message, type) {
 
 function displayUniversityDetails(data) {
     const detailsContainer = document.getElementById('universityDetails');
+    
+    
 
     detailsContainer.innerHTML = `
 
     <h1 class="text-xl md:text-3xl my-4 font-medium mb-4 text-blue-500 text-center uppercase">${data.denomination}</h1>
+    <h1 class="text-xl md:text-2xl font-medium text-center my-4 text-blue-800 uppercase">Note des utilisateurs : ${/**Calcul de la note moyenne */data.avis.length > 0 ? data.avis.reduce((acc, review) => acc + review.note, 0)/data.avis.length : 0}/5</h1>
        
          <div class="border rounded shadow md:flex md:flex-row items-center justify-between container mx-auto my-4 p-4 bg-gray-200" data-aos = "fade-down" data-aos-delay="400">
                     <div class="md:w-1/2" data-aos = "fade-right" data-aos-delay="500">

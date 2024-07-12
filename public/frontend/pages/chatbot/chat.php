@@ -14,17 +14,23 @@
     <!-- Notification container -->
     <div id="notification-container" class="fixed top-4 right-4 z-50 space-y-4"></div>
 
+    <div>
+
+    </div>
     <!-- Banner -->
-    <section class="bg-cover bg-center text-white py-20" style="background-image: url('../../images/building-1.jpg');">
+    <div class="py-4 text-transparent">
+        <h1>maformation</h1>
+     </div>
+    <section class="bg-cover bg-center h-5/6 text-white py-20" style="background-image: url('../../images/building-1.jpg');" data-aos="fade-up">
         <div class="container mx-auto text-center h-80 my-auto flex flex-col justify-center items-center bg-black bg-opacity-60">
-            <h1 class="text-4xl font-bold mb-4">Find Your Ideal University</h1>
-            <p class="text-xl mb-8">Answer a few questions and we'll recommend the best universities for you.</p>
-            <button id="start-chat" class="bg-white text-blue-700 font-bold py-2 px-4 rounded">Get Started</button>
+            <h1 class="text-4xl font-bold mb-4">Trouver des formations sur mésure</h1>
+            <p class="text-xl mb-8">Repondez à quelques questions et trouvez les facultés qui vous correspondent.</p>
+            <button id="start-chat" class="bg-white text-blue-700 font-bold py-2 px-4 rounded hover:bg-gray-300">Commencer</button>
         </div>
     </section>
 
     <!-- Chat Bot Container -->
-    <?php require_once '../../components/general-comps/chat-button.php'; ?>
+    <?php //require_once '../../components/general-comps/chat-button.php'; ?>
     <div id="chat-bot" class="fixed bottom-5 md:right-5 md:w-96 h-5/6 bg-white rounded-lg shadow-xl transform translate-y-full duration-300 hidden flex-col z-50">
         <div class="chat-header flex items-center justify-between p-4 bg-blue-600 text-white rounded-t-lg">
             <div class="h-7 flex flex-row items-center space-x-2">
@@ -46,12 +52,12 @@
 
     <!-- Results Section -->
     <section class="container mx-auto py-10 px-4 md:px-14" id="results-section" style="display: none;">
-        <h2 class="text-2xl font-bold mb-6">Recommended Universities</h2>
+        <h2 class="text-2xl font-bold mb-6">Facultés recommendées</h2>
         <div id="results" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </section>
 
     <!-- Feedback Section -->
-    <div class="container md:mx-8 mt-8 p-4 w-full md:w-2/4">
+    <div class="container md:mx-8 mt-8 p-4 w-full md:w-2/4 hidden">
         <h2 class="text-2xl font-semibold mb-4">Laissez votre feedback</h2>
         <form id="feedbackForm" class="bg-white p-4 rounded shadow-md">
             <label for="facultyId" class="block text-gray-700 font-bold mb-2">Faculté :</label>
@@ -63,7 +69,7 @@
         </form>
     </div>
 
-    <?php require_once '../../components/general-comps/footer.php'; ?>
+    <?php // require_once '../../components/general-comps/footer.php'; ?>
 
     <script src="../../app.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

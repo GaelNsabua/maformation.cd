@@ -25,9 +25,9 @@ router.get('/search', auth, async (req, res) => {
       };
   
       const budgetStage = (!isNaN(budget)) ? {
-        $and: [
+        $or: [
           { 'prixFrais.min': { $lte: budget } },
-          { 'prixFrais.max': { $gte: budget } }
+          { 'prixFrais.max': { $lte: budget } }
         ]
       } : {};
   

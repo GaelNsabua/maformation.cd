@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         startConversation()
         setTimeout(getNextQuestion, 6000); // Attend 8 secondes avant de poser la première question
     });
+//});
 
     document.getElementById('close-chat').addEventListener('click', () => {
         document.getElementById('chat-bot').classList.remove('translate-y-0', 'flex');
@@ -42,8 +43,27 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     //chatbot introduction
-    function startConversation() {
-        addMessageToChat('bot', 'Bonjour! Je suis votre assistant conseiller d\'orientation virtuel. Je suis là pour vous aider à trouver la faculté qui correspond le mieux à vos intérêts et compétences.');
+    async function startConversation() {
+        try {
+            const userResponse = await axios.get(`http://localhost:5000/users/profile`, {
+                headers: {
+                    'x-auth-token': token
+                }
+            });
+            
+            if (userResponse){
+                const nom = userResponse.data.name;
+                addMessageToChat('bot', "Bonjour " + userResponse.data.name + " ! Je suis votre assistant conseiller d\'orientation virtuel. Je suis là pour vous aider à trouver la faculté qui correspond le mieux à vos intérêts et compétences.");
+                console.log(userResponse.data.name)
+            }else{
+                const nom = "";
+                addMessageToChat('bot', "Bonjour ! Je suis votre assistant conseiller d\'orientation virtuel. Je suis là pour vous aider à trouver la faculté qui correspond le mieux à vos intérêts et compétences.");
+
+            }
+    
+        } catch (error) {
+            showNotification('Erreur lors de l\'envoi de l\'avis', 'error');
+        }
     }
 
     // Fonction pour ajouter des messages à la conversation

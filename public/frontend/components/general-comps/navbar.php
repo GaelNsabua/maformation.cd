@@ -53,7 +53,7 @@
                      <a href="#" class="text-gray-100 transform duration-150 hover:-translate-y-1">Contact</a>
                 </div>
             </div>
-            <div class="hidden md:block transform duration-150 hover:-translate-x-2">
+            <div class="hidden transform duration-150 hover:-translate-x-2" id="register-btn">
                 <a href="http://localhost/maformation.cd/public/frontend/pages/login.php" class="bg-blue-400 text-white font-medium shadow-md px-4 py-2 rounded hover:bg-blue-600">S'INSCRIRE</a>
             </div>
             <div class="md:hidden flex items-center">
@@ -73,3 +73,16 @@
             <a href="http://localhost/maformation.cd/public/frontend/pages/login.php" class="block px-4 py-2 text-white bg-red-500 hover:bg-red-600">S'INSCRIRE</a>
         </div>
     </nav>
+
+<script>
+     document.addEventListener('DOMContentLoaded', async () => {
+    const token = localStorage.getItem('token');
+    const btn = document.getElementById('register-btn')
+    if (!token) {
+        btn.classList.remove("hidden")
+        btn.classList.add("md:block")
+        return;
+    }
+})
+</script>
+   

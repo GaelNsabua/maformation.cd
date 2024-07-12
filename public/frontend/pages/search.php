@@ -13,7 +13,7 @@
     <main class="container mx-auto md:px-20 px-3 md:py-8 py-2">
         <?php require_once '../components/general-comps/search-section.php'; ?>
         <div class="bg-green-400 text-white text-center p-4 rounded-md mx-auto shadow-lg my-3 max-w-xl transform scale-0 duration-200" id="search-message"><h1 class="font-medium">Voici les resultats qui repondent aux critères de votre recherche</h1></div>
-        <div class="my-8 text-transparent">
+        <div class="my-3 text-transparent">
             <h1>maformation</h1>
         </div>
         <div id="search-results" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto"></div>
